@@ -4,4 +4,4 @@ project(cpp-util)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_subdirectory(intro_box)
+add_subdirectory(cmd)

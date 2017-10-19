@@ -30,6 +30,8 @@
 #include <algorithm>
 #include <stdexcept>
 
+namespace drodil {
+
 class IntroBox {
 public:
 
@@ -215,5 +217,8 @@ private:
 	unsigned short m_box_width;
 	unsigned short m_padding;
 };
+
+}
+ // namespace drodil
 
 #endif // INTRO_BOX_INTRO_BOX_HPP_

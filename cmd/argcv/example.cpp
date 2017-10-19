@@ -22,24 +22,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "intro_box.hpp"
+#include "argcv.hpp"
 #include <iostream>
 
-int main() {
-	std::string content;
-	content += "This is IntroBox example\n\n";
-	content +=
-			"You can use IntroBox to create some beautiful command line helps for your programs\n";
-	content += "There are multiple configuration params you can use:\n";
-	content += "- Horizontal/vertical character to use\n";
-	content += "- Box width\n";
-	content += "- Padding width\n";
-	content += "- Border width\n";
-	content += "\nAnd later some more :)";
+using namespace drodil;
 
-	IntroBox box(content);
-	box.set_border_width(2);
-	std::cout << box << std::endl;
+int main(int argc, char** argv) {
+	if (argc <= 1) {
+		std::cout << "Pass some parameters to see it work." << std::endl;
+		return 0;
+	}
 
-	return 0;
+	ArgCV parser(argc, argv);
+	auto tokens = parser.get_tokens();
+	std::cout << "Parsed tokens are:" << std::endl;
+	for (const auto& token : tokens) {
+		std::cout << "  " << token << std::endl;
+	}
+
+	auto args = parser.get_args();
+	std::cout << "Parsed arguments are:" << std::endl;
+	for (const auto& arg : args) {
+		std::cout << "  " << arg.first << " => " << arg.second << std::endl;
+	}
+
+	return 1;
 }
+
