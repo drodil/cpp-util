@@ -31,6 +31,8 @@
 #include <stdexcept>
 
 namespace drodil {
+namespace cmd {
+namespace intro_box {
 
 class IntroBox {
 public:
@@ -218,7 +220,8 @@ private:
 	unsigned short m_padding;
 };
 
-}
- // namespace drodil
+} // namespace intro_box
+} // namespace cmd
+} // namespace drodil
 
 #endif // INTRO_BOX_INTRO_BOX_HPP_

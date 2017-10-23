@@ -22,30 +22,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "argcv.hpp"
+#include "binary_operators.hpp"
 #include <iostream>
+#include <bitset>
 
-using namespace drodil::cmd::argcv;
+using namespace drodil::general::binary_operators;
 
-int main(int argc, char** argv) {
-	if (argc <= 1) {
-		std::cout << "Pass some parameters to see it work." << std::endl;
-		return 0;
-	}
+enum class TestEnum {
+    None = 0,
+    First = 1 << 1,
+    Second = 1 << 2,
+    Third = 1 << 3
+};
 
-	ArgCV parser(argc, argv);
-	auto tokens = parser.get_tokens();
-	std::cout << "Parsed tokens are:" << std::endl;
-	for (const auto& token : tokens) {
-		std::cout << "  " << token << std::endl;
-	}
+int main() {
+    std::bitset<8> firstComplement(static_cast<int>(~TestEnum::First));
+    std::cout << "First ones complement: " << firstComplement << std::endl;
 
-	auto args = parser.get_args();
-	std::cout << "Parsed arguments are:" << std::endl;
-	for (const auto& arg : args) {
-		std::cout << "  " << arg.first << " => " << arg.second << std::endl;
-	}
-
+    std::bitset<8> firstAndSecond(static_cast<int>(TestEnum::First | TestEnum::Second));
+    std::cout << "First | Second: " << firstAndSecond << std::endl;
+    
 	return 1;
 }
-

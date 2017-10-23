@@ -29,6 +29,8 @@
 #include <map>
 
 namespace drodil {
+namespace cmd {
+namespace argcv {
 
 // \class ArgCV
 // Allows parsing command line arguments in the following formats:
@@ -168,6 +170,8 @@ private:
 	std::map<std::string, std::string> m_args;
 };
 
+} // namespace argcv
+} // namespace cmd
 } // namespace drodil
 
 #endif // CMD_ARGCV_ARGCV_HPP_

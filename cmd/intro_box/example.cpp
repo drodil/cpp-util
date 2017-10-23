@@ -25,7 +25,7 @@
 #include "intro_box.hpp"
 #include <iostream>
 
-using namespace drodil;
+using namespace drodil::cmd::intro_box;
 
 int main() {
 	std::string content;

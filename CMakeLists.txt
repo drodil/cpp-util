@@ -5,3 +5,4 @@ project(cpp-util)
 set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(cmd)
+add_subdirectory(general)
