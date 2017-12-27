@@ -15,4 +15,4 @@ them as you like.
 
 If you want to support this, you can always throw few
 satoshis (Bitcoins) to:
-> 1GuXRXCmftPvPsXWoJA5W62nUjxfPortJH
+> 15gq8L5M2kwCWWkHS69GQu1uD6deE2vVyG
