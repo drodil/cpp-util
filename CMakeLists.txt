@@ -6,3 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(cmd)
 add_subdirectory(general)
+add_subdirectory(file)

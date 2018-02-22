@@ -50,8 +50,8 @@ public:
 	//
 	// \param[in] argc int    Number of arguments
 	// \param[in] argv char** Pointer of char array of arguments
-	ArgCV(int argc, char** argv) :
-			m_tokens(argv + 1, argc + argv) {
+	ArgCV(int argc, char** argv)
+			: m_tokens(argv + 1, argc + argv) {
 		// Untough it's bad to do work in constructor, we do it anyways here
 		// as it's such a simple thing :)
 		parse();
@@ -60,8 +60,8 @@ public:
 	// Initialize the parser with string vector
 	//
 	// \param[in] tokens std::vector<std::string> Arguments to parse
-	ArgCV(std::vector<std::string> tokens) :
-			m_tokens(tokens) {
+	ArgCV(std::vector<std::string> tokens)
+			: m_tokens(tokens) {
 		parse();
 	}
 

@@ -33,25 +33,39 @@ namespace binary_operators {
 
 // BINARY OPERATORS FOR INT ENUMS
 // Allows templating ~ operator for any enum class
-template<class T> inline T operator~(T a) { return static_cast<T>(~static_cast<int>(a)); }
+template<class T> inline T operator~(T a) {
+	return static_cast<T>(~static_cast<int>(a));
+}
 
 // Allows templating | operator for any enum class
-template<class T> inline T operator|(T a, T b) { return static_cast<T>(static_cast<int>(a) | static_cast<int>(b)); }
+template<class T> inline T operator|(T a, T b) {
+	return static_cast<T>(static_cast<int>(a) | static_cast<int>(b));
+}
 
 // Allows templating & operator for any enum class
-template<class T> inline T operator&(T a, T b) { return static_cast<T>(static_cast<int>(a) & static_cast<int>(b)); }
+template<class T> inline T operator&(T a, T b) {
+	return static_cast<T>(static_cast<int>(a) & static_cast<int>(b));
+}
 
 // Allows templating ^ operator for any enum class
-template<class T> inline T operator^(T a, T b) { return static_cast<T>(static_cast<int>(a) ^ static_cast<int>(b)); }
+template<class T> inline T operator^(T a, T b) {
+	return static_cast<T>(static_cast<int>(a) ^ static_cast<int>(b));
+}
 
 // Allows templating |= operator for any enum class
-template<class T> inline T& operator|=(T& a, T b) { return static_cast<T&>(static_cast<int&>(a) |= static_cast<int&>(b)); }
+template<class T> inline T& operator|=(T& a, T b) {
+	return static_cast<T&>(static_cast<int&>(a) |= static_cast<int&>(b));
+}
 
 // Allows templating &= operator for any enum class
-template<class T> inline T& operator&=(T& a, T b) { return static_cast<T&>(static_cast<int&>(a) &= static_cast<int&>(b)); }
+template<class T> inline T& operator&=(T& a, T b) {
+	return static_cast<T&>(static_cast<int&>(a) &= static_cast<int&>(b));
+}
 
 // Allows templating ^= operator for any enum class
-template<class T> inline T& operator^=(T& a, T b) { return static_cast<T&>(static_cast<int&>(a) ^= static_cast<int&>(a)); }
+template<class T> inline T& operator^=(T& a, T b) {
+	return static_cast<T&>(static_cast<int&>(a) ^= static_cast<int&>(a));
+}
 
 } // namespace binary_operators
 } // namespace general

@@ -22,23 +22,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "binary_operators.hpp"
+#include "detector.hpp"
+#include <fstream>
 #include <iostream>
-#include <bitset>
 
-using namespace drodil::general::binary_operators;
+using namespace drodil::file::mime;
 
-enum class TestEnum {
-	None = 0, First = 1 << 1, Second = 1 << 2, Third = 1 << 3
-};
+int main(int argc, char** argv) {
+	if (argc <= 1) {
+		std::cout << "Pass filename." << std::endl;
+		return 0;
+	}
 
-int main() {
-	std::bitset<8> firstComplement(static_cast<int>(~TestEnum::First));
-	std::cout << "First ones complement: " << firstComplement << std::endl;
+	std::fstream file(argv[1], std::ios::in | std::ios::binary | std::ios::ate);
+	if (!file || !file.is_open()) {
+		std::cout << "Could not open given file " << argv[1] << std::endl;
+		return 1;
+	}
 
-	std::bitset<8> firstAndSecond(
-			static_cast<int>(TestEnum::First | TestEnum::Second));
-	std::cout << "First | Second: " << firstAndSecond << std::endl;
+	Detector det;
+	std::cout << "From fstream: " << det.detect(file) << std::endl;
+	file.close();
 
-	return 1;
+	std::cout << "From extension: " << det.detect(std::string(argv[1]))
+			<< std::endl;
 }
+
