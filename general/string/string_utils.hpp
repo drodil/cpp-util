@@ -29,8 +29,10 @@
 #include <cctype>
 #include <cstdlib>
 #include <functional>
+#include <iterator>
 #include <locale>
 #include <random>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -44,8 +46,7 @@ namespace string {
 /// \param[in] delim std::string to split with
 ///
 /// \return std::vector<std::string>
-static inline std::vector<std::string> split(const std::string& str, const std::string& delim)
-{
+static inline std::vector<std::string> split(const std::string& str, const std::string& delim) {
     std::vector<std::string> ret;
     if (str.empty()) {
         return ret;
@@ -72,10 +73,9 @@ static inline std::vector<std::string> split(const std::string& str, const std::
 /// \param[in|out] trimmed std::string to trim
 ///
 /// \return std::string
-static inline std::string& l_trim(std::string& trimmed)
-{
-    std::ignore = trimmed.erase(trimmed.begin(), std::find_if(trimmed.begin(), trimmed.end(),
-                                                  std::not1(std::ptr_fun<int, int>(std::isspace))));
+static inline std::string& l_trim(std::string& trimmed) {
+    std::ignore = trimmed.erase(
+        trimmed.begin(), std::find_if(trimmed.begin(), trimmed.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
     return trimmed;
 }
 
@@ -84,8 +84,7 @@ static inline std::string& l_trim(std::string& trimmed)
 /// \param[in|out] trimmed std::string to trim
 ///
 /// \return std::string
-static inline std::string& r_trim(std::string& trimmed)
-{
+static inline std::string& r_trim(std::string& trimmed) {
     std::ignore = trimmed.erase(
         std::find_if(trimmed.rbegin(), trimmed.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(),
         trimmed.end());
@@ -97,25 +96,20 @@ static inline std::string& r_trim(std::string& trimmed)
 /// \param[in|out] trimmed String to trim
 ///
 /// \return std::string
-static inline std::string& trim(std::string& trimmed)
-{
-    return l_trim(r_trim(trimmed));
-}
+static inline std::string& trim(std::string& trimmed) { return l_trim(r_trim(trimmed)); }
 
 /// \brief Generate random string
 ///
 /// \param[in] length size_t Size of the generated string
 ///
 /// \return std::string
-static inline std::string random_string(std::size_t length)
-{
+static inline std::string random_string(std::size_t length) {
     static auto& chrs = "0123456789"
                         "abcdefghijklmnopqrstuvwxyz"
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     thread_local static std::mt19937 rg{std::random_device{}()};
-    thread_local static std::uniform_int_distribution<std::string::size_type> pick(0, sizeof(chrs) -
-                                                                                          2);
+    thread_local static std::uniform_int_distribution<std::string::size_type> pick(0, sizeof(chrs) - 2);
     std::string ret;
     ret.reserve(length);
 
@@ -125,6 +119,26 @@ static inline std::string random_string(std::size_t length)
     }
 
     return ret;
+}
+
+/// \brief Implode elements to string with delimiter
+///
+/// \param[in] elems Elements to implode
+/// \param[in] delim Delimiter between elements
+///
+/// \return std::string
+static inline std::string implode(const std::vector<std::string>& elems, const std::string& delim) {
+    switch (elems.size()) {
+    case 0:
+        return "";
+    case 1:
+        return elems[0];
+    default:
+        std::ostringstream os;
+        std::copy(elems.begin(), elems.end() - 1, std::ostream_iterator<std::string>(os, delim.c_str()));
+        os << *elems.rbegin();
+        return os.str();
+    }
 }
 
 } // namespace string

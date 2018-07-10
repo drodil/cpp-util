@@ -28,28 +28,29 @@
 using namespace drodil::general::string;
 
 int main() {
-	std::string splitted = "Hello World From Oulu Finland";
-	std::cout << "Splitting string: " << splitted << std::endl;
-	int i = 0;
-	for(auto split : drodil::general::string::split(splitted, " ")) {
-		std::cout << i << ": " << split << std::endl;
-		i++;
-	}
+    std::string splitted = "Hello World From Oulu Finland";
+    std::cout << "Splitting string: " << splitted << std::endl;
+    int i = 0;
+    for (auto split : drodil::general::string::split(splitted, " ")) {
+        std::cout << i << ": " << split << std::endl;
+        i++;
+    }
 
-	std::string l = "   To trim   ";
-	std::cout << "l_trim for '" << l << "' -> ";
-	std::cout << "'" << l_trim(l) << "'" << std::endl;
+    std::string l = "   To trim   ";
+    std::cout << "l_trim for '" << l << "' -> ";
+    std::cout << "'" << l_trim(l) << "'" << std::endl;
 
-	std::string r = "   To trim   ";
-	std::cout << "r_trim for '" << r << "' -> ";
-	std::cout << "'" << r_trim(r) << "'" << std::endl;
+    std::string r = "   To trim   ";
+    std::cout << "r_trim for '" << r << "' -> ";
+    std::cout << "'" << r_trim(r) << "'" << std::endl;
 
-	std::string lr = "   To trim   ";
-	std::cout << "trim for '" << lr << "' -> ";
-	std::cout << "'" << trim(lr) << "'" << std::endl;
+    std::string lr = "   To trim   ";
+    std::cout << "trim for '" << lr << "' -> ";
+    std::cout << "'" << trim(lr) << "'" << std::endl;
 
-	std::cout << "Random string of 5 characters: " << random_string(5)
-			<< std::endl;
-	std::cout << "Random string of 50 characters: " << random_string(50)
-			<< std::endl;
+    std::cout << "Random string of 5 characters: " << random_string(5) << std::endl;
+    std::cout << "Random string of 50 characters: " << random_string(50) << std::endl;
+
+    std::vector<std::string> elems{"elem1", "elem2", "elem3"};
+    std::cout << "Imploded: " << drodil::general::string::implode(elems, "#") << std::endl;
 }
