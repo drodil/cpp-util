@@ -31,40 +31,52 @@ namespace drodil {
 namespace general {
 namespace binary_operators {
 
-// BINARY OPERATORS FOR INT ENUMS
-// Allows templating ~ operator for any enum class
-template<class T> inline T operator~(T a) {
-	return static_cast<T>(~static_cast<int>(a));
+// Allows ~ operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum operator~(Enum a) {
+	return static_cast<Enum>(~static_cast<typename std::underlying_type<Enum>::type>(a));
 }
 
-// Allows templating | operator for any enum class
-template<class T> inline T operator|(T a, T b) {
-	return static_cast<T>(static_cast<int>(a) | static_cast<int>(b));
+// Allows | operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum operator|(Enum a, Enum b) {
+	return static_cast<Enum>(static_cast<typename std::underlying_type<Enum>::type>(a) | 
+                           static_cast<typename std::underlying_type<Enum>::type>(b));
 }
 
-// Allows templating & operator for any enum class
-template<class T> inline T operator&(T a, T b) {
-	return static_cast<T>(static_cast<int>(a) & static_cast<int>(b));
+// Allows & operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum operator&(Enum a, Enum b) {
+	return static_cast<Enum>(static_cast<typename std::underlying_type<Enum>::type>(a) & 
+                           static_cast<typename std::underlying_type<Enum>::type>(b));
 }
 
-// Allows templating ^ operator for any enum class
-template<class T> inline T operator^(T a, T b) {
-	return static_cast<T>(static_cast<int>(a) ^ static_cast<int>(b));
+// Allows ^ operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum operator^(Enum a, Enum b) {
+	return static_cast<Enum>(static_cast<typename std::underlying_type<Enum>::type>(a) ^ 
+                           static_cast<typename std::underlying_type<Enum>::type>(b));
 }
 
-// Allows templating |= operator for any enum class
-template<class T> inline T& operator|=(T& a, T b) {
-	return static_cast<T&>(static_cast<int&>(a) |= static_cast<int&>(b));
+// Allows |= operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum& operator|=(Enum& a, Enum b) {
+	return static_cast<Enum&>(static_cast<typename std::underlying_type<Enum>::type&>(a) |= 
+                            static_cast<typename std::underlying_type<Enum>::type&>(b));
 }
 
-// Allows templating &= operator for any enum class
-template<class T> inline T& operator&=(T& a, T b) {
-	return static_cast<T&>(static_cast<int&>(a) &= static_cast<int&>(b));
+// Allows &= operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum& operator&=(Enum& a, Enum b) {
+	return static_cast<Enum&>(static_cast<typename std::underlying_type<Enum>::type&>(a) &= 
+                            static_cast<typename std::underlying_type<Enum>::type&>(b));
 }
 
-// Allows templating ^= operator for any enum class
-template<class T> inline T& operator^=(T& a, T b) {
-	return static_cast<T&>(static_cast<int&>(a) ^= static_cast<int&>(a));
+// Allows ^= operator for any enum class in the same namespace
+template<class Enum, class = typename std::enable_if<std::is_enum<Enum>::value, Enum>::type> 
+inline Enum& operator^=(Enum& a, Enum b) {
+	return static_cast<Enum&>(static_cast<typename std::underlying_type<Enum>::type&>(a) ^= 
+                            static_cast<typename std::underlying_type<Enum>::type&>(a));
 }
 
 } // namespace binary_operators
