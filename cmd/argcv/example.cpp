@@ -46,6 +46,19 @@ int main(int argc, char** argv) {
 		std::cout << "  " << arg.first << " => " << arg.second << std::endl;
 	}
 
+	if (parser.has_arg("get_value_as"))
+	{
+		double d = parser.get_value_as<double>("get_value_as");
+		int i = parser.get_value_as<int>("get_value_as");
+		unsigned u = parser.get_value_as<unsigned>("get_value_as");
+		std::string s = parser.get_value_as<std::string>("get_value_as");
+		std::cout << std::endl;
+		std::cout << "get_value_as: " << d << " " << typeid(d).name() << std::endl;
+		std::cout << "get_value_as: " << i << " " << typeid(i).name() << std::endl;
+		std::cout << "get_value_as: " << u << " " << typeid(u).name() << std::endl;
+		std::cout << "get_value_as: " << s << " " << typeid(s).name() << std::endl;
+	}
+
 	return 1;
 }
 

@@ -26,6 +26,7 @@
 
 #include <vector>
 #include <string>
+#include <sstream>
 #include <map>
 
 namespace drodil {
@@ -124,7 +125,10 @@ public:
 	// \return T
 	template<typename T>
 	T get_value_as(const std::string& key) const noexcept {
-		// TODO: Missing implementation
+		std::istringstream iss{get_value(key)};
+		T result{};
+		iss >> result;
+		return result;
 	}
 
 private:
