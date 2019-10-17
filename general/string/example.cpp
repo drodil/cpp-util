@@ -40,13 +40,25 @@ int main() {
     std::cout << "l_trim for '" << l << "' -> ";
     std::cout << "'" << l_trim(l) << "'" << std::endl;
 
+    std::string lminus = "-----To trim---";
+    std::cout << "l_trim for '" << lminus << "' -> ";
+    std::cout << "'" << l_trim(lminus, "-") << "'" << std::endl;
+
     std::string r = "   To trim   ";
     std::cout << "r_trim for '" << r << "' -> ";
     std::cout << "'" << r_trim(r) << "'" << std::endl;
 
+    std::string rminus = "-----To trim---";
+    std::cout << "r_trim for '" << rminus << "' -> ";
+    std::cout << "'" << r_trim(rminus, "-") << "'" << std::endl;
+
     std::string lr = "   To trim   ";
     std::cout << "trim for '" << lr << "' -> ";
     std::cout << "'" << trim(lr) << "'" << std::endl;
+
+    std::string lrminus = "-----To trim---";
+    std::cout << "trim for '" << lrminus << "' -> ";
+    std::cout << "'" << trim(lrminus, "-") << "'" << std::endl;
 
     std::cout << "Random string of 5 characters: " << random_string(5) << std::endl;
     std::cout << "Random string of 50 characters: " << random_string(50) << std::endl;
