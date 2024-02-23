@@ -32,6 +32,7 @@
 #include <iterator>
 #include <locale>
 #include <random>
+#include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -70,33 +71,33 @@ static inline std::vector<std::string> split(const std::string& str, const std::
 
 /// \brief Trim string from the start
 ///
-/// \param[in|out] trimmed std::string to trim
+/// \param[in] s std::string to trim
+/// \param[in] c std::string trim this regex pattern
 ///
 /// \return std::string
-static inline std::string& l_trim(std::string& trimmed) {
-    std::ignore = trimmed.erase(
-        trimmed.begin(), std::find_if(trimmed.begin(), trimmed.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-    return trimmed;
+static inline std::string l_trim(const std::string& s, const std::string c = "\\s") {
+	return std::regex_replace(s, std::regex{ "^(" + c + ")*" }, "");
 }
 
 /// \brief Trim string from the end
 ///
-/// \param[in|out] trimmed std::string to trim
+/// \param[in] s std::string to trim
+/// \param[in] c std::string trim this regex pattern
 ///
 /// \return std::string
-static inline std::string& r_trim(std::string& trimmed) {
-    std::ignore = trimmed.erase(
-        std::find_if(trimmed.rbegin(), trimmed.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(),
-        trimmed.end());
-    return trimmed;
+static inline std::string r_trim(const std::string& s, const std::string c = "\\s") {
+	return std::regex_replace(s, std::regex{ "(" + c + ")*$" }, "");
 }
 
 /// \brief Trim string from the start and end
 ///
-/// \param[in|out] trimmed String to trim
+/// \param[in] s std::string to trim
+/// \param[in] c std::string trim this regex pattern
 ///
 /// \return std::string
-static inline std::string& trim(std::string& trimmed) { return l_trim(r_trim(trimmed)); }
+static inline std::string trim(const std::string& s, const std::string c = "\\s") {
+	return l_trim(r_trim(s, c), c);
+}
 
 /// \brief Generate random string
 ///

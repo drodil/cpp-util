@@ -48,10 +48,10 @@ int main(int argc, char** argv) {
 
 	if (parser.has_arg("get_value_as"))
 	{
-		double d = parser.get_value_as<double>("get_value_as");
-		int i = parser.get_value_as<int>("get_value_as");
-		unsigned u = parser.get_value_as<unsigned>("get_value_as");
-		std::string s = parser.get_value_as<std::string>("get_value_as");
+		auto d = parser.get_value_as<double>("get_value_as");
+		auto i = parser.get_value_as<int>("get_value_as");
+		auto u = parser.get_value_as<unsigned>("get_value_as");
+		auto s = parser.get_value_as<std::string>("get_value_as");
 		std::cout << std::endl;
 		std::cout << "get_value_as: " << d << " " << typeid(d).name() << std::endl;
 		std::cout << "get_value_as: " << i << " " << typeid(i).name() << std::endl;
